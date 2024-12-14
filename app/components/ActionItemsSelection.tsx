@@ -1,6 +1,5 @@
-"use client"
-
 // components/ActionItemsSection.tsx
+'use client'
 import React from 'react';
 import { Card, CardHeader, CardBody, Button, Input } from "@nextui-org/react";
 import { Plus } from 'lucide-react';
@@ -33,7 +32,7 @@ const ActionItemsSection: React.FC = () => {
   };
 
   return (
-    <Card className="h-full">
+    <Card>
       <CardHeader className="flex justify-between items-center px-6">
         <div>
           <h2 className="text-xl font-semibold">Action Items</h2>
@@ -48,31 +47,33 @@ const ActionItemsSection: React.FC = () => {
           Add Action Item
         </Button>
       </CardHeader>
-      <CardBody className="space-y-4">
-        {actionItems.map((item) => (
-          <div key={item.id} className="grid gap-2">
-            <Input
-              label="Task"
-              placeholder="Enter task description"
-              value={item.task}
-              onChange={(e) => updateActionItem(item.id, 'task', e.target.value)}
-            />
-            <div className="grid grid-cols-2 gap-2">
+      <CardBody className="p-6 overflow-y-auto">
+        <div className="space-y-4">
+          {actionItems.map((item) => (
+            <div key={item.id} className="grid gap-2">
               <Input
-                label="Assignee"
-                placeholder="Enter assignee"
-                value={item.assignee}
-                onChange={(e) => updateActionItem(item.id, 'assignee', e.target.value)}
+                label="Task"
+                placeholder="Enter task description"
+                value={item.task}
+                onChange={(e) => updateActionItem(item.id, 'task', e.target.value)}
               />
-              <Input
-                type="date"
-                label="Due Date"
-                value={item.dueDate}
-                onChange={(e) => updateActionItem(item.id, 'dueDate', e.target.value)}
-              />
+              <div className="grid grid-cols-2 gap-2">
+                <Input
+                  label="Assignee"
+                  placeholder="Enter assignee"
+                  value={item.assignee}
+                  onChange={(e) => updateActionItem(item.id, 'assignee', e.target.value)}
+                />
+                <Input
+                  type="date"
+                  label="Due Date"
+                  value={item.dueDate}
+                  onChange={(e) => updateActionItem(item.id, 'dueDate', e.target.value)}
+                />
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </CardBody>
     </Card>
   );

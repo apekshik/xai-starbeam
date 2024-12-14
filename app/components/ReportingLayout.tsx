@@ -1,6 +1,5 @@
 // components/ReportingLayout.tsx
 'use client'
-
 import React from 'react';
 import { Button } from "@nextui-org/react";
 import { Send } from 'lucide-react';
@@ -21,8 +20,8 @@ const ReportingLayout: React.FC<ReportingLayoutProps> = ({
   previousReport
 }) => {
   return (
-    <div className="flex gap-6">
-      {/* Main Content - Takes 80% of the width */}
+    <div className="flex gap-6 w-full min-h-screen p-6">
+      {/* Main Content */}
       <div className="flex-grow">
         <div className="space-y-6">
           {/* Project Details and KPI Section */}
@@ -34,13 +33,11 @@ const ReportingLayout: React.FC<ReportingLayoutProps> = ({
               {kpiSection}
             </div>
           </div>
-
-          {/* Events and Actions - Equal width */}
+          {/* Events and Actions */}
           <div className="grid grid-cols-2 gap-6">
-            <div className="h-full">{events}</div>
-            <div className="h-full">{actions}</div>
+            <div>{events}</div>
+            <div>{actions}</div>
           </div>
-
           {/* Submit Button */}
           <div className="flex justify-end mt-6">
             <Button 
@@ -53,9 +50,8 @@ const ReportingLayout: React.FC<ReportingLayoutProps> = ({
           </div>
         </div>
       </div>
-
-      {/* Sidebar - Takes 20% of the width */}
-      <div className="w-[20%] min-w-[250px]">
+      {/* Sidebar */}
+      <div className="w-[300px] flex-shrink-0">
         {previousReport}
       </div>
     </div>

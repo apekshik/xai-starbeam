@@ -1,6 +1,5 @@
 // components/EventsSection.tsx
 'use client'
-
 import React from 'react';
 import { Card, CardHeader, CardBody, Button, Textarea } from "@nextui-org/react";
 import { Plus, Trash2 } from 'lucide-react';
@@ -25,7 +24,7 @@ const EventsSection: React.FC = () => {
   };
 
   return (
-    <Card className="h-full">
+    <Card>
       <CardHeader className="flex justify-between items-center px-6">
         <div>
           <h2 className="text-xl font-semibold">Events & Updates</h2>
@@ -40,38 +39,40 @@ const EventsSection: React.FC = () => {
           Add Event
         </Button>
       </CardHeader>
-      <CardBody className="space-y-6">
-        {events.map((event) => (
-          <Card key={event.id} className="p-4">
-            <div className="space-y-4">
-              <div className="flex justify-between">
-                <h3 className="text-sm font-medium">Event Details</h3>
-                <Button
-                  isIconOnly
-                  size="sm"
-                  color="danger"
-                  variant="light"
-                  onPress={() => removeEvent(event.id)}
-                >
-                  <Trash2 size={16} />
-                </Button>
+      <CardBody className="p-6 overflow-y-auto">
+        <div className="space-y-6">
+          {events.map((event) => (
+            <Card key={event.id} className="p-4">
+              <div className="space-y-4">
+                <div className="flex justify-between">
+                  <h3 className="text-sm font-medium">Event Details</h3>
+                  <Button
+                    isIconOnly
+                    size="sm"
+                    color="danger"
+                    variant="light"
+                    onPress={() => removeEvent(event.id)}
+                  >
+                    <Trash2 size={16} />
+                  </Button>
+                </div>
+                <Textarea
+                  label="Description"
+                  placeholder="Describe the event"
+                  value={event.description}
+                  variant="bordered"
+                  className="mb-2"
+                />
+                <Textarea
+                  label="Impact"
+                  placeholder="Describe the impact"
+                  value={event.impact}
+                  variant="bordered"
+                />
               </div>
-              <Textarea
-                label="Description"
-                placeholder="Describe the event"
-                value={event.description}
-                variant="bordered"
-                className="mb-2"
-              />
-              <Textarea
-                label="Impact"
-                placeholder="Describe the impact"
-                value={event.impact}
-                variant="bordered"
-              />
-            </div>
-          </Card>
-        ))}
+            </Card>
+          ))}
+        </div>
       </CardBody>
     </Card>
   );

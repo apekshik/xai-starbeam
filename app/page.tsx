@@ -16,23 +16,22 @@ export default function Home() {
   const [selectedDate, setSelectedDate] = React.useState<Date>(new Date());
 
   return (
-    <Layout>
-      <div className="w-full px-6">
-        <ReportingLayout
-          projectSelector={
-            <ProjectDateSelector 
-              onProjectChange={setSelectedProject}
-              onDateChange={setSelectedDate}
-            />
-          }
-          kpiSection={
-            <KPISection project={selectedProject} />
-          }
-          events={<EventsSection />}
-          actions={<ActionItemsSection />}
-          previousReport={<PreviousReport />}
-        />
-      </div>
-    </Layout>
+    <main className="min-h-screen bg-black">
+      <h1 className="text-white text-2xl font-bold px-8">EOD Report</h1>
+      <ReportingLayout
+        projectSelector={
+          <ProjectDateSelector 
+            onProjectChange={setSelectedProject}
+            onDateChange={setSelectedDate}
+          />
+        }
+        kpiSection={
+          <KPISection project={selectedProject} />
+        }
+        events={<EventsSection />}
+        actions={<ActionItemsSection />}
+        previousReport={<PreviousReport />}
+      />
+    </main>
   );
 }
