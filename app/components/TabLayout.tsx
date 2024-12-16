@@ -1,8 +1,8 @@
 'use client'
 
 import React, { ReactNode } from 'react';
-import { Tabs, Tab } from "@nextui-org/react";
-import { History } from 'lucide-react';
+import { Tabs, Tab, Button, Select, SelectItem } from "@nextui-org/react";
+import { History, Send } from 'lucide-react';
 
 interface EODReportTabProps {
   projectSelector: ReactNode;
@@ -25,6 +25,24 @@ const EODReportTab: React.FC<EODReportTabProps> = ({
   actions,
   yesterdayReport
 }) => {
+  const [selectedSigner, setSelectedSigner] = React.useState<string>("");
+  
+  const signers = [
+    { label: "John Doe", value: "john.doe" },
+    { label: "Jane Smith", value: "jane.smith" },
+    { label: "Alex Johnson", value: "alex.johnson" },
+  ];
+
+  const handleSubmit = () => {
+    if (!selectedSigner) {
+      // You might want to add proper error handling/notification here
+      alert("Please select a signer");
+      return;
+    }
+    console.log("Submitting report with signer:", selectedSigner);
+    // Add your submit logic here
+  };
+
   return (
     <div className="flex-grow space-y-6">
       {/* Project Details and KPI Section */}
@@ -56,6 +74,34 @@ const EODReportTab: React.FC<EODReportTabProps> = ({
             {yesterdayReport}
           </div>
         </div>
+      </div>
+
+      {/* Submit Section */}
+      <div className="flex justify-between items-center bg-default-100 rounded-large p-4">
+        <div className="flex items-center gap-4">
+          <Select 
+            label="Report Signer"
+            placeholder="Select signer"
+            className="w-64"
+            selectedKeys={selectedSigner ? [selectedSigner] : []}
+            onChange={(e) => setSelectedSigner(e.target.value)}
+          >
+            {signers.map((signer) => (
+              <SelectItem key={signer.value} value={signer.value}>
+                {signer.label}
+              </SelectItem>
+            ))}
+          </Select>
+        </div>
+        <Button 
+          color="primary"
+          endContent={<Send className="w-4 h-4" />}
+          size="lg"
+          onPress={handleSubmit}
+          isDisabled={!selectedSigner}
+        >
+          Submit EOD Report
+        </Button>
       </div>
     </div>
   );
