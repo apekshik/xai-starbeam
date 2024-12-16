@@ -52,7 +52,7 @@ const ProjectDateSelector: React.FC<ProjectDateSelectorProps> = ({
   };
 
   return (
-    <Card className="h-full">
+    <Card className="h-full dark">
       <CardBody className="space-y-6">
         {/* Date Selection */}
         <div className="flex items-center gap-2">

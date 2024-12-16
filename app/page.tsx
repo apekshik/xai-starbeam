@@ -30,16 +30,16 @@ export default function Home(): React.JSX.Element {
   );
 
   return (
-    <main className="min-h-screen bg-black dark">
-        <div className="flex items-center gap-3 px-8 py-4">
+    <main className="min-h-screen dark">
+        <div className="flex items-center gap-2 px-8 py-4">
         <Image
           src="/xai-logo-white.png"
-          alt="StarBeam Logo"
-          width={32}
-          height={32}
+          alt="StarSynk Logo"
+          width={28}
+          height={28}
           className="object-contain"
         />
-        <h1 className="text-white text-2xl font-bold">StarBeam</h1>
+        <h1 className="text-white text-2xl font-bold">StarSynk</h1>
       </div>
       <TabLayout
         projectSelector={

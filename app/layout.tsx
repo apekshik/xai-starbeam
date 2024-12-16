@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "StarBeam",
-  description: "Human Data Platform for Daily Reporting",
+  title: "StarSynk",
+  description: "Human Data Management Platform",
 };
 
 export default function RootLayout({
