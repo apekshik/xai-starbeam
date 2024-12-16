@@ -1,8 +1,7 @@
 "use client"
 
-// components/ProjectDateSelector.tsx
 import React from 'react';
-import { Card, CardHeader, CardBody, Select, SelectItem, Button, Popover, PopoverTrigger, PopoverContent } from "@nextui-org/react";
+import { Card, CardBody, Select, SelectItem, Button, Popover, PopoverTrigger, PopoverContent } from "@nextui-org/react";
 import { Calendar } from "@nextui-org/react";
 import { today, getLocalTimeZone, CalendarDate } from "@internationalized/date";
 import { Calendar as CalendarIcon } from 'lucide-react';
@@ -17,13 +16,19 @@ interface ProjectDateSelectorProps {
   onDateChange: (value: Date) => void;
 }
 
-const ProjectDateSelector: React.FC<ProjectDateSelectorProps> = ({ onProjectChange, onDateChange }) => {
+const ProjectDateSelector: React.FC<ProjectDateSelectorProps> = ({ 
+  onProjectChange, 
+  onDateChange 
+}) => {
   const [selectedProject, setSelectedProject] = React.useState<string>("CBV");
   const [date, setDate] = React.useState<CalendarDate>(today(getLocalTimeZone()));
 
   const projects: Project[] = [
     { label: "Criteria Based Verifier", value: "CBV" },
-    { label: "Data Analytics Platform", value: "DAP" },
+    { label: "CBV RAG", value: "AE" },
+    { label: "Deep Search", value: "DS" },
+    { label: "Grok Analyze", value: "GA" },
+    { label: "Aurora Image Gen", value: "AIG" },
   ];
 
   const handleProjectChange = (value: string) => {
@@ -33,7 +38,6 @@ const ProjectDateSelector: React.FC<ProjectDateSelectorProps> = ({ onProjectChan
 
   const handleDateChange = (value: CalendarDate) => {
     setDate(value);
-    // Convert CalendarDate to JavaScript Date
     const jsDate = new Date(value.year, value.month - 1, value.day);
     onDateChange?.(jsDate);
   };
@@ -48,13 +52,11 @@ const ProjectDateSelector: React.FC<ProjectDateSelectorProps> = ({ onProjectChan
   };
 
   return (
-    <Card className="w-full p-4">
-      <CardHeader>
-        <h2 className="text-xl">Project Details</h2>
-      </CardHeader>
-      <CardBody className="space-y-4">
-      <div className="flex items-center gap-2">
-          <div className="text-sm">{formatDate(date)}</div>
+    <Card className="h-full">
+      <CardBody className="space-y-6">
+        {/* Date Selection */}
+        <div className="flex items-center gap-2">
+          <div className="text-sm font-medium">{formatDate(date)}</div>
           <Popover placement="bottom">
             <PopoverTrigger>
               <Button 
@@ -77,12 +79,12 @@ const ProjectDateSelector: React.FC<ProjectDateSelectorProps> = ({ onProjectChan
           </Popover>
         </div>
 
+        {/* Project Selection */}
         <Select 
           label="Select Project"
           placeholder="Select a project"
           selectedKeys={[selectedProject]}
           onChange={(e) => handleProjectChange(e.target.value)}
-          className="max-w-md"
         >
           {projects.map((project) => (
             <SelectItem key={project.value} value={project.value}>
@@ -90,6 +92,25 @@ const ProjectDateSelector: React.FC<ProjectDateSelectorProps> = ({ onProjectChan
             </SelectItem>
           ))}
         </Select>
+
+        {/* Project Overview Information */}
+        <div className="space-y-4">
+          <h3 className="text-lg font-medium">Project Overview</h3>
+          <div className="space-y-2">
+            <div>
+              <p className="text-sm text-gray-500">Current Sprint</p>
+              <p className="text-sm font-medium">Sprint 23</p>
+            </div>
+            <div>
+              <p className="text-sm text-gray-500">Team Size</p>
+              <p className="text-sm font-medium">8 members</p>
+            </div>
+            <div>
+              <p className="text-sm text-gray-500">Status</p>
+              <p className="text-sm font-medium">Active</p>
+            </div>
+          </div>
+        </div>
       </CardBody>
     </Card>
   );
