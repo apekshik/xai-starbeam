@@ -30,7 +30,7 @@ export default function Home(): React.JSX.Element {
   );
 
   return (
-    <main className="min-h-screen bg-black">
+    <main className="min-h-screen bg-black dark">
         <div className="flex items-center gap-3 px-8 py-4">
         <Image
           src="/xai-logo-white.png"
